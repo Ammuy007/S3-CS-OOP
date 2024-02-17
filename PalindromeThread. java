@@ -1,4 +1,4 @@
-//Enter two numbers as command line arguments and find the palindrome numbers between them
+//Enter two numbers as command line arguments and find the palindrome numbers between them using Thread
 class SharedData{
     public static final SharedData lock=new SharedData();
     public synchronized static void PalindromeNum(int num1,int num2){
