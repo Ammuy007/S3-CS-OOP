@@ -1,3 +1,4 @@
+//Reads a line of integers separated by comma and find their sum
 import java.io.*;
 import java.util.*;
 public class StrTokenizer{
@@ -7,7 +8,7 @@ public class StrTokenizer{
             System.out.println("Enter numbers");
             Scanner sc=new Scanner(System.in);
             String str=sc.nextLine();
-            StringTokenizer st=new StringTokenizer(str);
+            StringTokenizer st=new StringTokenizer(str,",");
             while(st.hasMoreTokens()){
                 sum=sum+Integer.parseInt(st.nextToken());
             }
