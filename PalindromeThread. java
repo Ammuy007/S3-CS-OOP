@@ -1,0 +1,45 @@
+//Enter two numbers as command line arguments and find the palindrome numbers between them
+class SharedData{
+    public static final SharedData lock=new SharedData();
+    public synchronized static void PalindromeNum(int num1,int num2){
+        for(int i=num1;i<=num2;i++){
+            int num=i;
+            int rev_num=0;
+            int org_num=num;
+            while(num>0){
+                int rem=num%10;
+                num=num/10;
+                rev_num=rev_num*10+rem;
+            }
+            if(rev_num==org_num){
+                System.out.println(org_num);
+            }
+        }
+    }
+}
+class ThreadEx extends Thread{
+    int num1,num2;
+    public void run(){
+        SharedData.lock.PalindromeNum(num1,num2);
+    }
+    public ThreadEx(int num1,int num2){
+        this.num1=num1;
+        this.num2=num2;
+    }
+}
+public class Main {
+    public static void main(String[] args){
+        if(args.length!=2){
+            System.out.println("Enter two numbers");
+        }
+        else{
+            int num1=Integer.parseInt(args[0]);
+            int num2=Integer.parseInt(args[1]);
+            int mid=(num1+num2)/2;
+            ThreadEx t1=new ThreadEx(num1,mid);
+            ThreadEx t2=new ThreadEx(mid,num2);
+            t1.start();
+            t2.start();
+        }
+    }
+}
